@@ -1,16 +1,10 @@
 import os
 import discord
-import dotenv
 import time
 
-# Load environment variables
-dotenv.load_dotenv()
-
-# Get Discord client
-client = discord.Client()
-
+# Environment variables
 TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
+
 TRIGGER_WORD = [
   'uwu', 'owo', 'ono'
 ]
@@ -18,12 +12,15 @@ TRIGGER_WORD = [
 # Cooldown
 COOLDOWN = 10.0
 
+def current_time():
+    return time.time()
+
+client = discord.Client()
+
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
-def current_time():
-    return time.time()
 
 cooldown_map = {}
 
